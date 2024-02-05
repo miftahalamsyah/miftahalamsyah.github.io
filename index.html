@@ -1,0 +1,79 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>miftahalamsyah | Github Page</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="typing-container">
+    <h1 id="line1"></h1>
+    <h2 id="line2"></h2>
+  </div>
+
+
+<style>
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  margin: 0;
+  font-family: 'Arial', sans-serif;
+}
+
+.typing-container {
+  text-align: center;
+}
+
+h1, h2 {
+  margin: 0;
+}
+
+</style>
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  const lines = [
+    "This Site Under Construction",
+  ];
+
+  const line1Element = document.getElementById('line1');
+  const line2Element = document.getElementById('line2');
+
+  let currentLineIndex = 0;
+  let currentCharIndex = 0;
+
+  function typeText() {
+    if (currentCharIndex < lines[currentLineIndex].length) {
+      line1Element.textContent += lines[currentLineIndex].charAt(currentCharIndex);
+      currentCharIndex++;
+      setTimeout(typeText, 100);
+    } else {
+      setTimeout(eraseText, 1500);
+    }
+  }
+
+  function eraseText() {
+    if (currentCharIndex > 0) {
+      line1Element.textContent = lines[currentLineIndex].substring(0, currentCharIndex - 1);
+      currentCharIndex--;
+      setTimeout(eraseText, 50);
+    } else {
+      currentLineIndex = (currentLineIndex + 1) % lines.length;
+      setTimeout(typeText, 500);
+    }
+  }
+
+  // Start the typing animation
+  typeText();
+});
+
+</script>
+
+</body>
+</html>
+
