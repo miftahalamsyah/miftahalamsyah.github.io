@@ -1,79 +1,197 @@
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>miftahalamsyah | Github Page</title>
-  <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <title>miftah alamsyah</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&family=Monofett&display=swap" rel="stylesheet">
 </head>
+
 <body>
-  <div class="typing-container">
-    <h1 id="line1"></h1>
-    <h2 id="line2"></h2>
-  </div>
+    <div class="terminal-container">
+        <div class="terminal-text">
+            <span>[web@miftahalamsyah] ~ </span><span class="cursor">$ </span><span id="catCommand" class="typeme"></span>
+        </div>
+        <div class="terminal-output" style="display: none;">
+            <pre id="outputContent">
+about.txt
+--------------------------
+Greetings! I'm Miftah, also known as @nrrdy, your friendly Elephant Tamer (PHP) 😅 from the vibrant lands of Indonesia. My journey in the world of programming has been so plain 😞 and full of learning curves, but I ignite my passion for Computer Science (CS) like a blazing comet across the digital sky. I believe in Computer Science education for all, and my mission is to make coding accessible, enjoyable, and downright thrilling for every aspiring coder out there!
+
+When I'm not summoning magical code incantations, you can find me crafting captivating articles on miftahalamsyah.my.id/blog, where I share insights, tips, and tricks to navigate the vast realms of programming and tech wizardry. Have a burning question about Web Programming, AI, Networking, or anything in between? Don't hesitate to reach out! Drop me a line at miftahrizkyalamsyah@protonmail.com, and let's embark on an epic journey of coding adventures together!
+--------------------------
+<span class="text-secondary">Link: </span><a href="https://miftahalamsyah.my.id/">Website</a>
+<span class="text-secondary">Blog: </span><a href="https://miftahalamsyah.my.id/blog">miftahalamsyah.my.id/blog</a>
+<span class="text-secondary">Github: </span><a href="https://github.com/miftahalamsyah">@miftahalamsyah</a>
+<span class="text-secondary">Instagram: </span><a href="https://instagram.com/miftah.rzky">@miftah.rzky</a>
+<span class="text-secondary">X (Twitter): </span><a href="https://twitter.com/nrrdynrrdy">@nrrdynrrdy</a>
+--------------------------
+My Interest
+• Computer Science in Education
+• Linug 
+• Open Source
+--------------------------
+<span class="text-secondary">Theme: </span>Catppucin Mocha
+<span class="text-secondary">Font: </span>Inconsolata
+<span class="text-secondary">Time: </span><span id="currentTime"></span>
+--------------------------
+Also visit Wengdev!
+<a href="https://wengdev.tech">wengdev.tech</a>
+            </pre>
+        </div>
+        <div class="after-terminal-output" style="display: none;">
+            <span>[web@miftahalamsyah] ~ </span><span class="cursor">$ </span><span class="typeme"></span>
+        </div>
+    </div>
+
+    <script>
+        const textElement = document.getElementById('catCommand');
+        const outputAbout = document.querySelector('.terminal-output');
+        const afterOutput = document.querySelector('.after-terminal-output');
+        const currentTimeSpan = document.getElementById('currentTime');
+        const text = 'about.txt'; // Include the space character in the text
+        textElement.innerText = '';
+
+        let i = 0;
+        const typingInterval = setInterval(() => {
+            textElement.innerText += text.charAt(i);
+            i++;
+            if (i === text.length) {
+                clearInterval(typingInterval);
+                setTimeout(() => {
+                    outputAbout.style.display = 'block'; // Show the about section
+                    textElement.classList.remove('typeme'); // Remove typeme class to hide border-right in terminal-text
+                    afterOutput.style.display = 'block'; // Show the after-output section
+                    displayCurrentTime(); // Call function to display current time
+                }, 1000); // Delay before showing the sections
+            }
+        }, 100); // Adjust typing speed as needed
+
+        function displayCurrentTime() {
+            const now = new Date();
+            const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+            const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+            
+            const dayOfWeek = days[now.getDay()];
+            const dayOfMonth = now.getDate();
+            const monthName = months[now.getMonth()];
+            const year = now.getFullYear();
+            const hours = now.getHours().toString().padStart(2, '0');
+            const minutes = now.getMinutes().toString().padStart(2, '0');
+            const seconds = now.getSeconds().toString().padStart(2, '0');
+            
+            const currentTimeString = `${dayOfWeek}, ${dayOfMonth} ${monthName} ${year} | ${hours}.${minutes}.${seconds}`;
+            currentTimeSpan.textContent = currentTimeString;
+        }
+
+        // Display current time initially
+        displayCurrentTime();
+
+        // Update current time every second
+        setInterval(displayCurrentTime, 1000);
+
+    </script>
+</body>
+
+</html>
 
 
 <style>
-body {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  margin: 0;
-  font-family: 'Arial', sans-serif;
-}
+    @import url('https://fonts.googleapis.com/css2?family=Inconsolata:ital,wght@0,400;0,500;0,700;1,400&display=swap');
 
-.typing-container {
-  text-align: center;
-}
+    .text-primary {
+        color: #B5BFE2;
+    }
 
-h1, h2 {
-  margin: 0;
-}
+    .text-secondary {
+        color: #8CAAEE;
+    }
 
+    .cursor {
+        color: #f2d5cf;
+    }
+
+    * {
+        background: #131020;
+        font-family: 'Inconsolata', monospace;
+        font-weight: 500;
+        color: #c6d0f5;
+    }
+
+    body {
+        min-height: 95vh;
+        padding: 2rem;
+        display: flex;
+        flex-direction: column;
+        font-size: 1rem;
+    }
+
+    h3 {
+        display: inline-block;
+        font-size: inherit;
+        padding: 0 0.5em;
+        margin-bottom: 0;
+        background-color: #684eff;
+        color: #fafafa;
+    }
+
+    a {
+        color: #f2d5cf;
+        text-decoration: none;
+    }
+
+    a:hover {
+        text-decoration: underline;
+    }
+
+    .typeme {
+        width: 30ch;
+        animation: typing 2s steps(25), blink .5s step-end infinite alternate;
+        white-space: nowrap;
+        overflow: hidden;
+        border-right: 10px solid #f2d5cf;
+    }
+
+    .terminal-output {
+        overflow-x: hidden; /* Tambahkan properti ini untuk menghindari scroll horizontal */
+        display: none;
+    }
+
+    .terminal-output pre {
+        white-space: pre-wrap; /* Gunakan pre-wrap agar konten rapi tanpa scroll horizontal */
+    }
+
+    .after-terminal-output {
+        display: none;
+    }
+
+/* CSS lainnya tetap sama seperti yang telah Anda tentukan sebelumnya */
+
+
+    /* animation */
+
+    @keyframes fade {
+        0% { opacity: 0}
+        50% { opacity: 0; }
+        100% { opacity: 1; }
+    }
+
+    @keyframes typing {
+        0% { width: 0; }
+        100% { width: 30ch; }
+    }
+
+    @keyframes blink {
+        50% { border-color: transparent;}
+    }
+
+    /* dynamic resizing */
+    @media (min-width: 600px) {
+        body {
+            font-size: 1.25rem;
+        }
+    }
 </style>
-
-
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-  const lines = [
-    "This Site Under Construction",
-  ];
-
-  const line1Element = document.getElementById('line1');
-  const line2Element = document.getElementById('line2');
-
-  let currentLineIndex = 0;
-  let currentCharIndex = 0;
-
-  function typeText() {
-    if (currentCharIndex < lines[currentLineIndex].length) {
-      line1Element.textContent += lines[currentLineIndex].charAt(currentCharIndex);
-      currentCharIndex++;
-      setTimeout(typeText, 100);
-    } else {
-      setTimeout(eraseText, 1500);
-    }
-  }
-
-  function eraseText() {
-    if (currentCharIndex > 0) {
-      line1Element.textContent = lines[currentLineIndex].substring(0, currentCharIndex - 1);
-      currentCharIndex--;
-      setTimeout(eraseText, 50);
-    } else {
-      currentLineIndex = (currentLineIndex + 1) % lines.length;
-      setTimeout(typeText, 500);
-    }
-  }
-
-  // Start the typing animation
-  typeText();
-});
-
-</script>
-
-</body>
-</html>
-
